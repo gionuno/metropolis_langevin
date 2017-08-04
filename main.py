@@ -151,7 +151,7 @@ plt.show();
 
 metro = unif_metro(lambda x: -np.log(f(x)),lambda x: -df(x)/f(x),1.0,-5.0*np.ones(2),5.0*np.ones(2));
 
-N = 1000;
+N = 10000;
 X = metro.trail(N,1e-3);
 
 fig = plt.figure();
@@ -163,7 +163,7 @@ Y = np.zeros((N,2));
 F = np.zeros(N);
 for n in range(N):
     print n;
-    Y[n] = metro.samp(100,1e-1);
+    Y[n] = metro.samp(1000,1e-1);
     F[n] = f(Y[n]);
 
 L = 128;
