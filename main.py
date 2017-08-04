@@ -12,6 +12,7 @@ import numpy.random as rd;
 import scipy.io as scio;
 import matplotlib.image as img;
 import matplotlib.pyplot as plt;
+import matplotlib.colors as col;
 import matplotlib.gridspec as gs;
 
 class unif_metro:
@@ -152,10 +153,17 @@ plt.show();
 metro = unif_metro(lambda x: -np.log(f(x)),lambda x: -df(x)/f(x),1.0,-5.0*np.ones(2),5.0*np.ones(2));
 
 N = 10000;
-X = metro.trail(N,1e-3);
+X = metro.trail(N,1e-1);
 
+L = 128;
+l = np.linspace(np.min(X),np.max(X),L);
+A = np.zeros((L,L,3));
+for i in range(L):
+    for j in range(L):
+        A[i,j,0 ] = f(np.array( [l[j],l[i]] ));
+        A[i,j,1:] = df(np.array([l[j],l[i]] ));
 fig = plt.figure();
-plt.quiver(l,l,A[:,:,1],A[:,:,2]),plt.scatter(X[:,0],X[:,1],s=5,c=np.arange(N),cmap='jet');
+plt.imshow(A[:,:,0],cmap='gray'),plt.plot((L-1)*(X[:,0]-np.min(l))/(np.max(l)-np.min(l)),(L-1)*(X[:,1]-np.min(l))/(np.max(l)-np.min(l)),c='r');
 plt.show();
 
 N = 1000;
