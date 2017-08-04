@@ -5,7 +5,7 @@ Toy example. The distribution is a mixture of log-polar 'gaussians'.
 
 ![image](distribution.png)
 
-A sample is made by 'partially' solving a stochastic differential equation with an addition Metropolis acceptance step.
+A sample is made by 'partially' solving a stochastic differential equation with an additional Metropolis acceptance step.
 
 ![image](random_walk.png)
 
