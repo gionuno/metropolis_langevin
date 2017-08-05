@@ -150,7 +150,7 @@ fig = plt.figure();
 plt.imshow(A[:,:,0],cmap='terrain'),plt.quiver(np.arange(L),np.arange(L),A[:,:,1], A[:,:,2],pivot='mid');
 plt.show();
 
-metro = unif_metro(lambda x: -np.log(f(x)),lambda x: -df(x)/f(x),1.0,-5.0*np.ones(2),5.0*np.ones(2));
+metro = unif_metro(lambda x: -np.log(f(x)),lambda x: -df(x)/f(x),1.0,-2.0*np.ones(2),2.0*np.ones(2));
 
 N = 10000;
 X = metro.trail(N,1e-1);
@@ -163,7 +163,7 @@ for i in range(L):
         A[i,j,0 ] = f(np.array( [l[j],l[i]] ));
         A[i,j,1:] = df(np.array([l[j],l[i]] ));
 fig = plt.figure();
-plt.imshow(A[:,:,0],cmap='gray'),plt.plot((L-1)*(X[:,0]-np.min(l))/(np.max(l)-np.min(l)),(L-1)*(X[:,1]-np.min(l))/(np.max(l)-np.min(l)),c='r');
+plt.imshow(A[:,:,0],cmap='gray'),plt.scatter((L-1)*(X[:,0]-np.min(l))/(np.max(l)-np.min(l)),(L-1)*(X[:,1]-np.min(l))/(np.max(l)-np.min(l)),s=3,c=np.arange(N),cmap='jet');
 plt.show();
 
 N = 1000;
@@ -171,7 +171,7 @@ Y = np.zeros((N,2));
 F = np.zeros(N);
 for n in range(N):
     print n;
-    Y[n] = metro.samp(1000,1e-1);
+    Y[n] = metro.samp(100,1e-1);
     F[n] = f(Y[n]);
 
 L = 128;
